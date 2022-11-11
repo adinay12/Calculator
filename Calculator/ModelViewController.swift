@@ -8,11 +8,8 @@
 import UIKit
 
 class ModelViewController: UIViewController {
-     
-    @IBOutlet weak var result: UILabel!
     
- 
-    @IBOutlet weak var number1Button: UIButton!
+    @IBOutlet weak var result: UILabel!
     
     
     var firstNumber: String = ""
@@ -21,15 +18,13 @@ class ModelViewController: UIViewController {
     var operation: String = ""
     var isResultFound: Bool = false
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
     }
     
-     
-   
     fileprivate func getNumber(_ number: String) { // Входные параметры
         if operation.isEmpty {
             firstNumber += number
@@ -67,7 +62,6 @@ class ModelViewController: UIViewController {
             getNumber("8")
         case 9:
             getNumber("9")
-            
         default:
             print("there is no such number")
         }
@@ -93,41 +87,39 @@ class ModelViewController: UIViewController {
         }
     }
     
-
-    
     @IBAction func findeTheResult(_ sender: UIButton) {
         
         
-        guard let first = Int(firstNumber), let second = Int(secondNumber) else {
+        guard let first = Double(firstNumber), let second = Double(secondNumber) else {
             print("Thre is no number")
             return
         }
         
         switch operation {
         case "+":
-            results = first + second
+            results = Int(first + second)
             firstNumber = "\(results)"
         case "-":
-            results = first - second
+            results = Int(first - second)
             firstNumber = "\(results)"
         case "*":
-            results = first * second
+            results = Int(first * second)
             firstNumber = "\(results)"
         case "/":
-                results = first / second
-                firstNumber  = "\(results)"
+            results = Int(first / second)
+            firstNumber  = "\(results)"
         default:
             print("Idi domoi ty ustal")
         }
         
-          isResultFound = true
+        isResultFound = true
         
         result.text = "\(results)"
     }
     
     @IBAction func clear(_ sender: UIButton) {
         reset()
-        result.text = ""
+        result.text = "0"
     }
     
     
@@ -149,8 +141,8 @@ class ModelViewController: UIViewController {
                     secondNumber = "\(second)"
                 }
                 result.text = secondNumber
-        }
-   
+            }
+            
         } else {
             if var first = Int(firstNumber) {
                 if first > 0 {
@@ -161,14 +153,13 @@ class ModelViewController: UIViewController {
                     firstNumber = "\(first)"
                 }
                 result.text = firstNumber
+            }
         }
-        }
-    
+        
     }
     
     
     func reset(){
-        
         firstNumber = "0"
         secondNumber = "0"
         results = 0
